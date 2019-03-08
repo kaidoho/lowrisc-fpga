@@ -14,6 +14,8 @@ set common_dir "../../common"
 set project_name [lindex $argv 0]
 set CONFIG [lindex $argv 1]
 
+set arty_type [lindex $argv 2]
+
 # Set the directory path for the original project from where this script was exported
 set orig_proj_dir [file normalize $origin_dir/$project_name]
 
@@ -191,7 +193,7 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set files [list [file normalize "$origin_dir/constraint/pin_plan.xdc"] \
+set files [list [file normalize "$origin_dir/constraint/$arty_type.xdc"] \
 	        [file normalize "$origin_dir/constraint/timing.xdc"]]
 
 set file_added [add_files -norecurse -fileset $obj $files]
